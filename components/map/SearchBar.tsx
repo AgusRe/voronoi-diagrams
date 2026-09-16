@@ -2,148 +2,246 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useMap } from "react-leaflet";
-import { Search, X } from "lucide-react";
+import { Search, X, Loader2, AlertCircle, MapPin } from "lucide-react";
+import { searchLocation, NominatimPlace } from "@/lib/nominatim";
 
-interface NominatimResult {
-  place_id: number;
-  display_name: string;
-  lat: string;
-  lon: string;
-  boundingbox: string[];
-}
-
-/**
- * Search bar using Nominatim (OpenStreetMap geocoder).
- * Free, no API key required. Debounced at 500ms to respect rate limits.
- */
 export default function SearchBar() {
   const map = useMap();
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<NominatimResult[]>([]);
+  const [results, setResults] = useState<NominatimPlace[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showResults, setShowResults] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
-  const search = useCallback(async (q: string) => {
-    if (q.trim().length < 3) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const executeSearch = useCallback(async (searchQuery: string) => {
+    const q = searchQuery.trim();
+    if (q.length < 3) {
       setResults([]);
-      setShowResults(false);
+      setShowDropdown(false);
+      setErrorMessage(null);
       return;
     }
+
     setIsLoading(true);
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&addressdetails=0`,
-        { headers: { "Accept-Language": "es" } }
-      );
-      const data: NominatimResult[] = await res.json();
-      setResults(data);
-      setShowResults(data.length > 0);
-    } catch {
+    setErrorMessage(null);
+    setSelectedIndex(-1);
+
+    const res = await searchLocation(q);
+
+    setIsLoading(false);
+    if (res.error) {
+      setErrorMessage(res.error);
       setResults([]);
-    } finally {
-      setIsLoading(false);
+      setShowDropdown(true);
+    } else {
+      setResults(res.data);
+      setShowDropdown(true);
     }
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setQuery(val);
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => search(val), 500);
-  };
+  const handleSelect = useCallback(
+    (place: NominatimPlace) => {
+      const lat = parseFloat(place.lat);
+      const lon = parseFloat(place.lon);
+      const bb = place.boundingbox;
 
-  const handleSelect = (result: NominatimResult) => {
-    const lat = parseFloat(result.lat);
-    const lon = parseFloat(result.lon);
-    const bb = result.boundingbox;
+      if (bb && bb.length === 4) {
+        const south = parseFloat(bb[0]);
+        const north = parseFloat(bb[1]);
+        const west = parseFloat(bb[2]);
+        const east = parseFloat(bb[3]);
+        map.fitBounds([
+          [south, west],
+          [north, east],
+        ]);
+      } else {
+        map.setView([lat, lon], 14);
+      }
 
-    if (bb && bb.length === 4) {
-      map.fitBounds([
-        [parseFloat(bb[0]), parseFloat(bb[2])],
-        [parseFloat(bb[1]), parseFloat(bb[3])],
-      ]);
-    } else {
-      map.setView([lat, lon], 14);
+      setQuery(place.display_name.split(",")[0]);
+      setShowDropdown(false);
+      setResults([]);
+      setErrorMessage(null);
+      setSelectedIndex(-1);
+    },
+    [map]
+  );
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (showDropdown && selectedIndex >= 0 && selectedIndex < results.length) {
+        handleSelect(results[selectedIndex]);
+      } else {
+        executeSearch(query);
+      }
+      return;
     }
 
-    setQuery(result.display_name.split(",").slice(0, 2).join(","));
-    setShowResults(false);
-    setResults([]);
+    if (e.key === "Escape") {
+      setShowDropdown(false);
+      setSelectedIndex(-1);
+      return;
+    }
+
+    if (!showDropdown || results.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev > 0 ? prev - 1 : results.length - 1));
+    }
   };
 
   const handleClear = () => {
     setQuery("");
     setResults([]);
-    setShowResults(false);
+    setErrorMessage(null);
+    setShowDropdown(false);
+    setSelectedIndex(-1);
+    inputRef.current?.focus();
   };
 
-  // Close dropdown on outside click
+  // Close dropdown on click outside
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
+    const handleOutsideClick = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setShowResults(false);
+        setShowDropdown(false);
+        setSelectedIndex(-1);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
   }, []);
 
   return (
     <div ref={containerRef} className="relative w-full">
-      <div className="relative">
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10 text-gray-400 pointer-events-none">
+      <div className="relative flex items-center">
+        {/* Search icon / loader button */}
+        <button
+          type="button"
+          onClick={() => executeSearch(query)}
+          aria-label="Buscar ubicación"
+          className="absolute left-3.5 z-10 text-gray-400 hover:text-white transition-colors"
+        >
           {isLoading ? (
-            <div className="w-4 h-4 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />
+            <Loader2 size={16} className="animate-spin text-indigo-400" />
           ) : (
             <Search size={16} />
           )}
-        </div>
+        </button>
 
+        {/* Input */}
         <input
+          ref={inputRef}
           id="map-search-input"
           type="text"
+          role="combobox"
+          aria-expanded={showDropdown}
+          aria-autocomplete="list"
+          aria-controls="search-results-list"
           value={query}
-          onChange={handleChange}
-          onFocus={() => results.length > 0 && setShowResults(true)}
-          placeholder="Buscá una ciudad, barrio o dirección..."
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onFocus={() => {
+            if (results.length > 0 || errorMessage) setShowDropdown(true);
+          }}
+          placeholder="Buscá una ciudad, barrio o dirección y presioná Enter..."
           className="
-            w-full pl-9 pr-9 py-3 rounded-xl
-            bg-[#0d1117]/90 backdrop-blur-md
+            w-full pl-10 pr-16 py-2.5 rounded-xl
+            bg-[#0d1117]/95 backdrop-blur-md
             border border-white/10
-            text-white text-sm placeholder-gray-500
-            outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30
+            text-white text-xs placeholder-gray-500
+            outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/40
             shadow-2xl transition-all duration-200
           "
         />
 
-        {query && (
+        {/* Clear & Submit buttons */}
+        <div className="absolute right-2 flex items-center gap-1">
+          {query && (
+            <button
+              type="button"
+              onClick={handleClear}
+              aria-label="Limpiar búsqueda"
+              className="p-1 text-gray-400 hover:text-white transition-colors rounded"
+            >
+              <X size={14} />
+            </button>
+          )}
           <button
-            onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+            type="button"
+            onClick={() => executeSearch(query)}
+            disabled={isLoading || query.trim().length < 3}
+            className="px-2 py-1 bg-indigo-600/80 hover:bg-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed text-[11px] font-medium text-white rounded-md transition-colors"
           >
-            <X size={14} />
+            Buscar
           </button>
-        )}
+        </div>
       </div>
 
-      {/* Results dropdown */}
-      {showResults && results.length > 0 && (
-        <ul className="absolute top-full mt-1 w-full bg-[#0d1117]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50">
-          {results.map((r) => (
-            <li
-              key={r.place_id}
-              onClick={() => handleSelect(r)}
-              className="px-4 py-2.5 text-sm text-gray-300 hover:bg-white/5 hover:text-white cursor-pointer border-t border-white/5 first:border-t-0 transition-colors"
-            >
-              <span className="text-white font-medium">{r.display_name.split(",")[0]}</span>
-              <span className="text-gray-500 text-xs block truncate">
-                {r.display_name.split(",").slice(1).join(",").trim()}
-              </span>
-            </li>
-          ))}
-        </ul>
+      {/* Results Dropdown */}
+      {showDropdown && (
+        <div
+          id="search-results-list"
+          role="listbox"
+          className="absolute top-full mt-1.5 w-full bg-[#0d1117]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50 max-h-64 overflow-y-auto"
+        >
+          {errorMessage && (
+            <div className="p-3 text-xs text-rose-300 flex items-start gap-2 bg-rose-500/10">
+              <AlertCircle size={15} className="flex-shrink-0 mt-0.5 text-rose-400" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
+          {!errorMessage && results.length === 0 && !isLoading && (
+            <div className="p-4 text-center text-xs text-gray-400">
+              No se encontraron resultados para &ldquo;{query}&rdquo;.
+            </div>
+          )}
+
+          {!errorMessage &&
+            results.map((r, idx) => {
+              const isSelected = idx === selectedIndex;
+              const primary = r.display_name.split(",")[0];
+              const secondary = r.display_name.split(",").slice(1).join(",").trim();
+
+              return (
+                <div
+                  key={r.place_id}
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => handleSelect(r)}
+                  onMouseEnter={() => setSelectedIndex(idx)}
+                  className={`
+                    px-3.5 py-2.5 cursor-pointer border-t border-white/5 first:border-t-0 transition-colors flex items-start gap-2.5
+                    ${isSelected ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5"}
+                  `}
+                >
+                  <MapPin size={14} className="flex-shrink-0 mt-0.5 text-indigo-400" />
+                  <div className="min-w-0 flex-1">
+                    <span className="text-white text-xs font-medium block truncate">
+                      {primary}
+                    </span>
+                    {secondary && (
+                      <span className="text-gray-400 text-[10px] block truncate mt-0.5">
+                        {secondary}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       )}
     </div>
   );

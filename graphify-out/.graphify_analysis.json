@@ -1,0 +1,324 @@
+{
+  "communities": {
+    "0": [
+      "d3_delaunay",
+      "leaflet",
+      "lucide_react",
+      "next",
+      "package_dependencies",
+      "package_dependencies_d3_delaunay",
+      "package_dependencies_leaflet",
+      "package_dependencies_lucide_react",
+      "package_dependencies_next",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_leaflet",
+      "package_dependencies_types_d3_delaunay",
+      "package_dependencies_types_leaflet",
+      "package_dependencies_zustand",
+      "react",
+      "react_dom",
+      "react_leaflet",
+      "types_d3_delaunay",
+      "types_leaflet",
+      "zustand"
+    ],
+    "1": [
+      "eslint",
+      "eslint_config_next",
+      "package_devdependencies",
+      "package_devdependencies_eslint",
+      "package_devdependencies_eslint_config_next",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_postcss",
+      "package_devdependencies_tsx",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "tsx",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "typescript"
+    ],
+    "2": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target"
+    ],
+    "3": [
+      "app_map_page",
+      "app_map_page_mapcontainer",
+      "app_map_page_mappage",
+      "app_map_page_sidebartab",
+      "components_map_mapcontainer",
+      "components_map_mapcontainer_mapcontainer",
+      "components_map_mapcontainer_mapeventhandler",
+      "components_map_pointmarker",
+      "components_map_pointmarker_createicon",
+      "components_map_pointmarker_pointmarker",
+      "components_map_pointmarker_pointmarkerprops",
+      "components_map_voronoioverlay",
+      "components_map_voronoioverlay_voronoioverlay",
+      "components_sidebar_pointlist_pointitem",
+      "components_sidebar_pointlist_pointlist",
+      "store_usemapstore_getnextcolor",
+      "store_usemapstore_usemapstore"
+    ],
+    "4": [
+      "components_sidebar_pointlist",
+      "components_sidebar_pointlist_pointitemprops",
+      "docref_rfc_4122",
+      "store_usemapstore",
+      "store_usemapstore_current_schema_version",
+      "store_usemapstore_mapstore",
+      "store_usemapstore_sanitizepointslist",
+      "tests_store_test",
+      "types_index",
+      "types_index_category_colors",
+      "types_index_category_labels",
+      "types_index_default_color_palette",
+      "types_index_generateuuid",
+      "types_index_latlng",
+      "types_index_pointcategory",
+      "types_index_project",
+      "types_index_voronoipoint"
+    ],
+    "5": [
+      "lib_voronoi",
+      "lib_voronoi_clamp",
+      "lib_voronoi_drawvoronoi",
+      "lib_voronoi_drawvoronoioptions",
+      "lib_voronoi_findoverlappingpoints",
+      "lib_voronoi_hextorgba",
+      "lib_voronoi_isvalidcoordinate",
+      "lib_voronoi_pixelpoint",
+      "lib_voronoi_preparedelaunaycoordinates",
+      "lib_voronoi_renderpointdot",
+      "lib_voronoi_sanitizehexcolor",
+      "tests_voronoi_test",
+      "tests_voronoi_test_createmockcanvascontext"
+    ],
+    "6": [
+      "components_sidebar_projectcontrols",
+      "components_sidebar_projectcontrols_projectcontrols",
+      "lib_export",
+      "lib_export_downloadtextfile",
+      "lib_export_escapecsvcell",
+      "lib_export_exportdiagramaspng",
+      "lib_export_exportpngoptions",
+      "lib_export_generatepointscsv",
+      "lib_export_sanitizefilename",
+      "lib_export_ts_docref_rfc_4180",
+      "tests_export_test",
+      "tests_export_test_ts_docref_rfc_4180"
+    ],
+    "7": [
+      "package",
+      "package_imports",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_start",
+      "package_scripts_test",
+      "package_version"
+    ],
+    "8": [
+      "ref_mts",
+      "ref_next_dev_types_ts",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "tsconfig",
+      "tsconfig_exclude",
+      "tsconfig_include"
+    ],
+    "9": [
+      "components_map_searchbar",
+      "components_map_searchbar_searchbar",
+      "lib_nominatim",
+      "lib_nominatim_geocoderesult",
+      "lib_nominatim_nominatimplace",
+      "lib_nominatim_querycache",
+      "lib_nominatim_searchlocation",
+      "tests_nominatim_test"
+    ],
+    "10": [
+      "app_layout",
+      "app_layout_inter",
+      "app_layout_metadata",
+      "app_layout_rootlayout"
+    ],
+    "11": [
+      "app_page",
+      "app_page_features",
+      "app_page_homepage"
+    ],
+    "12": [
+      "eslint_config",
+      "eslint_config_eslintconfig"
+    ],
+    "13": [
+      "next_config",
+      "next_config_nextconfig"
+    ],
+    "14": [
+      "postcss_config",
+      "postcss_config_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09523809523809523,
+    "1": 0.10526315789473684,
+    "2": 0.10526315789473684,
+    "3": 0.21323529411764705,
+    "4": 0.27205882352941174,
+    "5": 0.358974358974359,
+    "6": 0.36363636363636365,
+    "7": 0.18181818181818182,
+    "8": 0.2,
+    "9": 0.39285714285714285,
+    "10": 0.5,
+    "11": 0.6666666666666666,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0
+  },
+  "gods": [
+    {
+      "id": "store_usemapstore_usemapstore",
+      "label": "useMapStore",
+      "degree": 20
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "lib_voronoi_drawvoronoi",
+      "label": "drawVoronoi()",
+      "degree": 11
+    },
+    {
+      "id": "types_index_voronoipoint",
+      "label": "VoronoiPoint",
+      "degree": 10
+    },
+    {
+      "id": "components_sidebar_projectcontrols_projectcontrols",
+      "label": "ProjectControls()",
+      "degree": 7
+    },
+    {
+      "id": "tsconfig_include",
+      "label": "include",
+      "degree": 7
+    },
+    {
+      "id": "lib_voronoi_sanitizehexcolor",
+      "label": "sanitizeHexColor()",
+      "degree": 6
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 6
+    },
+    {
+      "id": "lib_export_sanitizefilename",
+      "label": "sanitizeFilename()",
+      "degree": 5
+    },
+    {
+      "id": "lib_export_generatepointscsv",
+      "label": "generatePointsCsv()",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "PointMarkerProps",
+      "target": "VoronoiPoint",
+      "source_files": [
+        "components/map/PointMarker.tsx",
+        "types/index.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `PointMarkerProps` unexpectedly reaches hub `VoronoiPoint`"
+    },
+    {
+      "source": "ExportPngOptions",
+      "target": "VoronoiPoint",
+      "source_files": [
+        "lib/export.ts",
+        "types/index.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `ExportPngOptions` unexpectedly reaches hub `VoronoiPoint`"
+    },
+    {
+      "source": "MapPage()",
+      "target": "useMapStore",
+      "source_files": [
+        "app/map/page.tsx",
+        "store/useMapStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `MapPage()` unexpectedly reaches hub `useMapStore`"
+    },
+    {
+      "source": "MapEventHandler()",
+      "target": "useMapStore",
+      "source_files": [
+        "components/map/MapContainer.tsx",
+        "store/useMapStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `MapEventHandler()` unexpectedly reaches hub `useMapStore`"
+    },
+    {
+      "source": "MapContainer()",
+      "target": "useMapStore",
+      "source_files": [
+        "components/map/MapContainer.tsx",
+        "store/useMapStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `MapContainer()` unexpectedly reaches hub `useMapStore`"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

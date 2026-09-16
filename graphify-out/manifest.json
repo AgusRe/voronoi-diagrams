@@ -1,0 +1,140 @@
+{
+  "app/layout.tsx": {
+    "mtime": 1789567357.0881078,
+    "seen": 1789568731.7715611,
+    "ast_hash": "ac1491da96c188d10d0c01bca9f7dd16",
+    "semantic_hash": "ac1491da96c188d10d0c01bca9f7dd16"
+  },
+  "app/map/page.tsx": {
+    "mtime": 1789568294.7176137,
+    "seen": 1789568731.7715611,
+    "ast_hash": "ec4e33362ee679638becfa65069c95b2",
+    "semantic_hash": "ec4e33362ee679638becfa65069c95b2"
+  },
+  "app/page.tsx": {
+    "mtime": 1789568305.2255297,
+    "seen": 1789568731.7715611,
+    "ast_hash": "8daacf567e166bcbabf360d2edcc407f",
+    "semantic_hash": "8daacf567e166bcbabf360d2edcc407f"
+  },
+  "components/map/MapContainer.tsx": {
+    "mtime": 1789568227.7663388,
+    "seen": 1789568731.7715611,
+    "ast_hash": "b83145003260b9dc22ec9e339a08888d",
+    "semantic_hash": "b83145003260b9dc22ec9e339a08888d"
+  },
+  "components/map/PointMarker.tsx": {
+    "mtime": 1789568175.179701,
+    "seen": 1789568731.7715611,
+    "ast_hash": "c74b299ef26a5de343873adb215fbd99",
+    "semantic_hash": "c74b299ef26a5de343873adb215fbd99"
+  },
+  "components/map/SearchBar.tsx": {
+    "mtime": 1789568248.9255147,
+    "seen": 1789568731.7715611,
+    "ast_hash": "2de9140f3d58a9b2b4fb29ba5ef511ef",
+    "semantic_hash": "2de9140f3d58a9b2b4fb29ba5ef511ef"
+  },
+  "components/map/VoronoiOverlay.tsx": {
+    "mtime": 1789568166.5891955,
+    "seen": 1789568731.7715611,
+    "ast_hash": "2c431c90ad1b68814abaaacbf26f23ee",
+    "semantic_hash": "2c431c90ad1b68814abaaacbf26f23ee"
+  },
+  "components/sidebar/PointList.tsx": {
+    "mtime": 1789568218.4817579,
+    "seen": 1789568731.7715611,
+    "ast_hash": "85360b2a5be41ef8f6c3c0f0d58f7568",
+    "semantic_hash": "85360b2a5be41ef8f6c3c0f0d58f7568"
+  },
+  "components/sidebar/ProjectControls.tsx": {
+    "mtime": 1789568280.1486568,
+    "seen": 1789568731.7715611,
+    "ast_hash": "b4c0be8abb609f37083dc27e80d8f12f",
+    "semantic_hash": "b4c0be8abb609f37083dc27e80d8f12f"
+  },
+  "eslint.config.mjs": {
+    "mtime": 1789567357.0931103,
+    "seen": 1789568731.7715611,
+    "ast_hash": "6c4307ffa009658f5c97f5629094c0c2",
+    "semantic_hash": "6c4307ffa009658f5c97f5629094c0c2"
+  },
+  "lib/export.ts": {
+    "mtime": 1789568483.9633598,
+    "seen": 1789568731.7715611,
+    "ast_hash": "9b971a25caabc9af87e0ed46a269e589",
+    "semantic_hash": "9b971a25caabc9af87e0ed46a269e589"
+  },
+  "lib/nominatim.ts": {
+    "mtime": 1789568236.9937632,
+    "seen": 1789568731.7715611,
+    "ast_hash": "a9e5788157c34ecf6a5ba56757abe080",
+    "semantic_hash": "a9e5788157c34ecf6a5ba56757abe080"
+  },
+  "lib/voronoi.ts": {
+    "mtime": 1789568154.3321443,
+    "seen": 1789568731.7715611,
+    "ast_hash": "0a15b7774660bfb0c27a4ae5a6a18f74",
+    "semantic_hash": "0a15b7774660bfb0c27a4ae5a6a18f74"
+  },
+  "next.config.ts": {
+    "mtime": 1789567357.0941114,
+    "seen": 1789568731.7715611,
+    "ast_hash": "025f4fcb6024b3524d19492cf7ce54a2",
+    "semantic_hash": "025f4fcb6024b3524d19492cf7ce54a2"
+  },
+  "package.json": {
+    "mtime": 1789568557.352875,
+    "seen": 1789568731.7715611,
+    "ast_hash": "dc638b96521d24ba54d3a07cc80e2835",
+    "semantic_hash": "dc638b96521d24ba54d3a07cc80e2835"
+  },
+  "postcss.config.mjs": {
+    "mtime": 1789567357.0967095,
+    "seen": 1789568731.7715611,
+    "ast_hash": "481fac0fdecd70e1821cc30b86030c1a",
+    "semantic_hash": "481fac0fdecd70e1821cc30b86030c1a"
+  },
+  "store/useMapStore.ts": {
+    "mtime": 1789568493.9670465,
+    "seen": 1789568731.7715611,
+    "ast_hash": "accdcf5d8c68ba15df286f034cff9f59",
+    "semantic_hash": "accdcf5d8c68ba15df286f034cff9f59"
+  },
+  "tests/export.test.ts": {
+    "mtime": 1789568603.8034544,
+    "seen": 1789568731.7715611,
+    "ast_hash": "699f9de53bf578d08fc5962735084c25",
+    "semantic_hash": "699f9de53bf578d08fc5962735084c25"
+  },
+  "tests/nominatim.test.ts": {
+    "mtime": 1789568612.667369,
+    "seen": 1789568731.7715611,
+    "ast_hash": "e495dcf7117580cf17b353cf3470cd0e",
+    "semantic_hash": "e495dcf7117580cf17b353cf3470cd0e"
+  },
+  "tests/store.test.ts": {
+    "mtime": 1789568624.444969,
+    "seen": 1789568731.7715611,
+    "ast_hash": "cd674bfc2a622f7c740cc477e9a880b0",
+    "semantic_hash": "cd674bfc2a622f7c740cc477e9a880b0"
+  },
+  "tests/voronoi.test.ts": {
+    "mtime": 1789568636.051788,
+    "seen": 1789568731.7715611,
+    "ast_hash": "2f6073c5de98b5478f63a139fc7ea3f7",
+    "semantic_hash": "2f6073c5de98b5478f63a139fc7ea3f7"
+  },
+  "tsconfig.json": {
+    "mtime": 1789567357.1009989,
+    "seen": 1789568731.7715611,
+    "ast_hash": "ab575e944f15d39a5486cf9fca385c5e",
+    "semantic_hash": "ab575e944f15d39a5486cf9fca385c5e"
+  },
+  "types/index.ts": {
+    "mtime": 1789568186.0597742,
+    "seen": 1789568731.7715611,
+    "ast_hash": "ef020030f57e187648799539260af058",
+    "semantic_hash": "ef020030f57e187648799539260af058"
+  }
+}

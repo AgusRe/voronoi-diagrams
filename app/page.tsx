@@ -1,111 +1,127 @@
 import Link from "next/link";
-import { MapPin, Zap, Target, Share2, ArrowRight } from "lucide-react";
+import { MapPin, Zap, Target, Share2, ArrowRight, ShieldCheck, Compass } from "lucide-react";
 
 const features = [
   {
     icon: MapPin,
-    title: "Click para agregar",
-    desc: "Hacé click en cualquier punto del mapa para agregar un marcador. Arrastralo para reposicionarlo.",
+    title: "Interacción directa y táctil",
+    desc: "Hacé click o tocá cualquier punto del mapa para colocar un marcador. Arrastralo con fluidez para reposicionarlo en tiempo real.",
   },
   {
     icon: Zap,
-    title: "Voronoi instantáneo",
-    desc: "El diagrama se recalcula en tiempo real a medida que agregás, movés o eliminás puntos.",
+    title: "Motor Voronoi determinista",
+    desc: "Cálculo instantáneo con d3-delaunay recortado al viewport. Manejo robusto para 0, 1, 2, colineales y casos degenerados.",
   },
   {
     icon: Target,
-    title: "Zonas de influencia",
-    desc: "Cada celda representa el área geográfica más cercana a ese punto. Ideal para análisis de cobertura.",
+    title: "Análisis de cobertura",
+    desc: "Cada polígono delimita el área más cercana a cada punto. Esencial para estudios de geomarketing, sucursales y zonificación.",
   },
   {
     icon: Share2,
-    title: "Exportá tu análisis",
-    desc: "Descargá el mapa como imagen PNG o exportá los puntos en CSV para usar en otros análisis.",
+    title: "Exportación profesional",
+    desc: "Descargá diagramas en PNG de alta resolución con fondo limpio y exportá tus puntos a CSV compatible con Excel (RFC 4180).",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Persistencia sin riesgo",
+    desc: "Proyectos guardados en tu navegador con versionado de esquema, protección ante datos corruptos y detección de duplicados.",
+  },
+  {
+    icon: Compass,
+    title: "Geocodificación responsable",
+    desc: "Buscador integrado con OpenStreetMap Nominatim, control estricto de cuota, navegación por teclado y resultados en español.",
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0d1117] flex flex-col">
-      {/* Nav */}
-      <nav className="border-b border-white/5 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
-            <MapPin size={14} className="text-white" />
+    <main className="min-h-screen bg-[#0d1117] text-white flex flex-col selection:bg-indigo-500 selection:text-white">
+      {/* Navigation Bar */}
+      <nav className="border-b border-white/10 px-6 py-4 flex items-center justify-between bg-[#0d1117]/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center shadow-md shadow-indigo-600/30">
+            <MapPin size={15} className="text-white" />
           </div>
-          <span className="text-white font-semibold text-sm">VoronoiMap</span>
+          <span className="text-white font-semibold text-sm tracking-tight">VoronoiMap</span>
         </div>
         <Link
+          id="nav-map-btn"
           href="/map"
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-4 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/40"
         >
-          Abrir mapa <ArrowRight size={14} />
+          <span>Abrir visor</span>
+          <ArrowRight size={13} />
         </Link>
       </nav>
 
-      {/* Hero */}
-      <section className="flex-1 flex flex-col items-center justify-center px-6 py-24 text-center">
+      {/* Hero Section */}
+      <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3 py-1.5 rounded-full mb-8">
-          <Zap size={11} />
-          Análisis geográfico interactivo
+        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3.5 py-1.5 rounded-full mb-8 font-medium">
+          <Zap size={13} />
+          <span>Geometría computacional interactiva</span>
         </div>
 
-        {/* Heading */}
-        <h1 className="text-5xl sm:text-6xl font-bold text-white max-w-3xl leading-tight mb-6">
-          Visualizá zonas de{" "}
-          <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-            influencia
-          </span>{" "}
-          en el mapa
+        {/* Main Heading */}
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+          Diagramas de Voronoi para{" "}
+          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+            análisis territorial
+          </span>
         </h1>
 
-        <p className="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed">
-          Colocá puntos sobre el mapa y obtené un diagrama de Voronoi en tiempo real.
-          Perfecto para negocios que quieren analizar cobertura y optimizar publicidad.
+        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mb-10 leading-relaxed font-normal">
+          Definí puntos en el mapa y visualizá polígonos de proximidad en tiempo real. Analizá
+          áreas de influencia, competencia y cobertura de sucursales con precisión matemática.
         </p>
 
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
           <Link
             id="start-btn"
             href="/map"
-            className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-0.5"
+            className="flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-0.5"
           >
-            Comenzar ahora <ArrowRight size={16} />
+            <span>Comenzar análisis</span>
+            <ArrowRight size={15} />
           </Link>
           <a
-            href="https://en.wikipedia.org/wiki/Voronoi_diagram"
+            href="https://es.wikipedia.org/wiki/Pol%C3%ADgonos_de_Voronoi"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-8 py-3.5 rounded-xl font-medium transition-all"
+            className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white px-8 py-3.5 rounded-xl text-sm font-medium transition-all"
           >
-            ¿Qué es Voronoi?
+            ¿Cómo funciona Voronoi?
           </a>
         </div>
       </section>
 
-      {/* Features grid */}
-      <section className="px-6 pb-24 max-w-4xl mx-auto w-full">
-        <div className="grid sm:grid-cols-2 gap-4">
+      {/* Feature Grid */}
+      <section className="px-6 pb-24 max-w-5xl mx-auto w-full">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all"
+              className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 hover:border-white/10 hover:bg-white/[0.04] transition-all flex flex-col justify-between"
             >
-              <div className="w-9 h-9 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4">
-                <Icon size={18} className="text-indigo-400" />
+              <div>
+                <div className="w-8 h-8 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center mb-3.5">
+                  <Icon size={16} className="text-indigo-400" />
+                </div>
+                <h3 className="text-white text-sm font-semibold mb-1.5">{title}</h3>
+                <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
               </div>
-              <h3 className="text-white font-semibold mb-2">{title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 px-6 py-4 text-center text-gray-700 text-xs">
-        VoronoiMap — Powered by Google Maps & d3-delaunay
+      <footer className="border-t border-white/10 px-6 py-5 text-center text-gray-500 text-xs">
+        <p>
+          VoronoiMap • Desarrollado con Next.js, OpenStreetMap, CARTO, Leaflet y d3-delaunay.
+        </p>
       </footer>
     </main>
   );
