@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { VoronoiPoint, Project, PointCategory, LatLng } from "../types/index";
-import { generateUUID, DEFAULT_COLOR_PALETTE, CATEGORY_COLORS } from "../types/index";
+import { generateUUID, CATEGORY_COLORS, getRandomPointColor } from "../types/index";
 import { sanitizeHexColor } from "../lib/voronoi";
 
 export const CURRENT_SCHEMA_VERSION = 1;
@@ -48,12 +48,7 @@ interface MapStore {
   createNewProject: (name?: string) => void;
 }
 
-let colorIndex = 0;
-const getNextColor = () => {
-  const color = DEFAULT_COLOR_PALETTE[colorIndex % DEFAULT_COLOR_PALETTE.length];
-  colorIndex++;
-  return color;
-};
+
 
 /**
  * Validates and sanitizes a list of VoronoiPoint objects to prevent corrupt data crashes.
@@ -105,7 +100,8 @@ export const useMapStore = create<MapStore>()(
           return "";
         }
 
-        const pointColor = color ? sanitizeHexColor(color) : CATEGORY_COLORS[category] || getNextColor();
+        const lastPoint = get().points[get().points.length - 1];
+        const pointColor = color ? sanitizeHexColor(color) : getRandomPointColor(lastPoint?.color);
         const pointId = generateUUID();
         const pointName = name?.trim() || `Punto ${get().points.length + 1}`;
 

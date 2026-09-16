@@ -1,6 +1,41 @@
 {
   "communities": {
     "0": [
+      "app_map_page",
+      "app_map_page_mapcontainer",
+      "app_map_page_mappage",
+      "app_map_page_sidebartab",
+      "components_map_mapcontainer",
+      "components_map_mapcontainer_mapcontainer",
+      "components_map_mapcontainer_mapeventhandler",
+      "components_map_pointmarker",
+      "components_map_pointmarker_createicon",
+      "components_map_pointmarker_pointmarker",
+      "components_map_pointmarker_pointmarkerprops",
+      "components_sidebar_pointlist",
+      "components_sidebar_pointlist_pointitem",
+      "components_sidebar_pointlist_pointitemprops",
+      "components_sidebar_pointlist_pointlist",
+      "docref_rfc_4122",
+      "lib_export_exportpngoptions",
+      "store_usemapstore",
+      "store_usemapstore_current_schema_version",
+      "store_usemapstore_mapstore",
+      "store_usemapstore_sanitizepointslist",
+      "store_usemapstore_usemapstore",
+      "tests_store_test",
+      "types_index",
+      "types_index_category_colors",
+      "types_index_category_labels",
+      "types_index_default_color_palette",
+      "types_index_generateuuid",
+      "types_index_getrandompointcolor",
+      "types_index_latlng",
+      "types_index_pointcategory",
+      "types_index_project",
+      "types_index_voronoipoint"
+    ],
+    "1": [
       "d3_delaunay",
       "leaflet",
       "lucide_react",
@@ -23,7 +58,7 @@
       "types_leaflet",
       "zustand"
     ],
-    "1": [
+    "2": [
       "eslint",
       "eslint_config_next",
       "package_devdependencies",
@@ -44,7 +79,7 @@
       "types_react_dom",
       "typescript"
     ],
-    "2": [
+    "3": [
       "ref_dom",
       "ref_dom_iterable",
       "ref_esnext",
@@ -65,45 +100,9 @@
       "tsconfig_compileroptions_strict",
       "tsconfig_compileroptions_target"
     ],
-    "3": [
-      "app_map_page",
-      "app_map_page_mapcontainer",
-      "app_map_page_mappage",
-      "app_map_page_sidebartab",
-      "components_map_mapcontainer",
-      "components_map_mapcontainer_mapcontainer",
-      "components_map_mapcontainer_mapeventhandler",
-      "components_map_pointmarker",
-      "components_map_pointmarker_createicon",
-      "components_map_pointmarker_pointmarker",
-      "components_map_pointmarker_pointmarkerprops",
+    "4": [
       "components_map_voronoioverlay",
       "components_map_voronoioverlay_voronoioverlay",
-      "components_sidebar_pointlist_pointitem",
-      "components_sidebar_pointlist_pointlist",
-      "store_usemapstore_getnextcolor",
-      "store_usemapstore_usemapstore"
-    ],
-    "4": [
-      "components_sidebar_pointlist",
-      "components_sidebar_pointlist_pointitemprops",
-      "docref_rfc_4122",
-      "store_usemapstore",
-      "store_usemapstore_current_schema_version",
-      "store_usemapstore_mapstore",
-      "store_usemapstore_sanitizepointslist",
-      "tests_store_test",
-      "types_index",
-      "types_index_category_colors",
-      "types_index_category_labels",
-      "types_index_default_color_palette",
-      "types_index_generateuuid",
-      "types_index_latlng",
-      "types_index_pointcategory",
-      "types_index_project",
-      "types_index_voronoipoint"
-    ],
-    "5": [
       "lib_voronoi",
       "lib_voronoi_clamp",
       "lib_voronoi_drawvoronoi",
@@ -118,21 +117,7 @@
       "tests_voronoi_test",
       "tests_voronoi_test_createmockcanvascontext"
     ],
-    "6": [
-      "components_sidebar_projectcontrols",
-      "components_sidebar_projectcontrols_projectcontrols",
-      "lib_export",
-      "lib_export_downloadtextfile",
-      "lib_export_escapecsvcell",
-      "lib_export_exportdiagramaspng",
-      "lib_export_exportpngoptions",
-      "lib_export_generatepointscsv",
-      "lib_export_sanitizefilename",
-      "lib_export_ts_docref_rfc_4180",
-      "tests_export_test",
-      "tests_export_test_ts_docref_rfc_4180"
-    ],
-    "7": [
+    "5": [
       "package",
       "package_imports",
       "package_name",
@@ -145,7 +130,19 @@
       "package_scripts_test",
       "package_version"
     ],
-    "8": [
+    "6": [
+      "components_sidebar_projectcontrols",
+      "components_sidebar_projectcontrols_projectcontrols",
+      "lib_export",
+      "lib_export_downloadtextfile",
+      "lib_export_escapecsvcell",
+      "lib_export_exportdiagramaspng",
+      "lib_export_generatepointscsv",
+      "lib_export_sanitizefilename",
+      "lib_export_ts_docref_rfc_4180",
+      "tests_export_test"
+    ],
+    "7": [
       "ref_mts",
       "ref_next_dev_types_ts",
       "ref_next_env_d_ts",
@@ -157,7 +154,7 @@
       "tsconfig_exclude",
       "tsconfig_include"
     ],
-    "9": [
+    "8": [
       "components_map_searchbar",
       "components_map_searchbar_searchbar",
       "lib_nominatim",
@@ -167,46 +164,45 @@
       "lib_nominatim_searchlocation",
       "tests_nominatim_test"
     ],
-    "10": [
+    "9": [
       "app_layout",
       "app_layout_inter",
       "app_layout_metadata",
       "app_layout_rootlayout"
     ],
-    "11": [
+    "10": [
       "app_page",
       "app_page_features",
       "app_page_homepage"
     ],
-    "12": [
+    "11": [
       "eslint_config",
       "eslint_config_eslintconfig"
     ],
-    "13": [
+    "12": [
       "next_config",
       "next_config_nextconfig"
     ],
-    "14": [
+    "13": [
       "postcss_config",
       "postcss_config_config"
     ]
   },
   "cohesion": {
-    "0": 0.09523809523809523,
-    "1": 0.10526315789473684,
+    "0": 0.13636363636363635,
+    "1": 0.09523809523809523,
     "2": 0.10526315789473684,
-    "3": 0.21323529411764705,
-    "4": 0.27205882352941174,
-    "5": 0.358974358974359,
-    "6": 0.36363636363636365,
-    "7": 0.18181818181818182,
-    "8": 0.2,
-    "9": 0.39285714285714285,
-    "10": 0.5,
-    "11": 0.6666666666666666,
+    "3": 0.10526315789473684,
+    "4": 0.3142857142857143,
+    "5": 0.18181818181818182,
+    "6": 0.5111111111111111,
+    "7": 0.2,
+    "8": 0.39285714285714285,
+    "9": 0.5,
+    "10": 0.6666666666666666,
+    "11": 1.0,
     "12": 1.0,
-    "13": 1.0,
-    "14": 1.0
+    "13": 1.0
   },
   "gods": [
     {
@@ -227,7 +223,7 @@
     {
       "id": "types_index_voronoipoint",
       "label": "VoronoiPoint",
-      "degree": 10
+      "degree": 9
     },
     {
       "id": "components_sidebar_projectcontrols_projectcontrols",
@@ -250,17 +246,28 @@
       "degree": 6
     },
     {
-      "id": "lib_export_sanitizefilename",
-      "label": "sanitizeFilename()",
+      "id": "lib_voronoi_pixelpoint",
+      "label": "PixelPoint",
       "degree": 5
     },
     {
-      "id": "lib_export_generatepointscsv",
-      "label": "generatePointsCsv()",
+      "id": "lib_voronoi_findoverlappingpoints",
+      "label": "findOverlappingPoints()",
       "degree": 5
     }
   ],
   "surprises": [
+    {
+      "source": "PointItemProps",
+      "target": "VoronoiPoint",
+      "source_files": [
+        "components/sidebar/PointList.tsx",
+        "types/index.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `PointItemProps` unexpectedly reaches hub `VoronoiPoint`"
+    },
     {
       "source": "PointMarkerProps",
       "target": "VoronoiPoint",
@@ -270,7 +277,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `PointMarkerProps` unexpectedly reaches hub `VoronoiPoint`"
+      "why": "connects across different repos/directories; peripheral node `PointMarkerProps` unexpectedly reaches hub `VoronoiPoint`"
     },
     {
       "source": "ExportPngOptions",
@@ -281,7 +288,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `ExportPngOptions` unexpectedly reaches hub `VoronoiPoint`"
+      "why": "connects across different repos/directories; peripheral node `ExportPngOptions` unexpectedly reaches hub `VoronoiPoint`"
     },
     {
       "source": "MapPage()",
@@ -293,17 +300,6 @@
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "connects across different repos/directories; peripheral node `MapPage()` unexpectedly reaches hub `useMapStore`"
-    },
-    {
-      "source": "MapEventHandler()",
-      "target": "useMapStore",
-      "source_files": [
-        "components/map/MapContainer.tsx",
-        "store/useMapStore.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "connects across different repos/directories; peripheral node `MapEventHandler()` unexpectedly reaches hub `useMapStore`"
     },
     {
       "source": "MapContainer()",

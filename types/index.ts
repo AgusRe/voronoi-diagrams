@@ -53,7 +53,20 @@ export const DEFAULT_COLOR_PALETTE = [
   "#ec4899", // Pink
   "#84cc16", // Lime
   "#06b6d4", // Cyan
+  "#a855f7", // Violet
+  "#e11d48", // Rose dark
+  "#14b8a6", // Teal
+  "#38bdf8", // Sky
 ];
+
+/**
+ * Returns a random vibrant color from the palette, avoiding immediate repetition.
+ */
+export function getRandomPointColor(excludeColor?: string): string {
+  const candidates = DEFAULT_COLOR_PALETTE.filter((c) => c.toLowerCase() !== excludeColor?.toLowerCase());
+  const pool = candidates.length > 0 ? candidates : DEFAULT_COLOR_PALETTE;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 /**
  * Generates standard RFC 4122 v4 UUID using native browser crypto API.

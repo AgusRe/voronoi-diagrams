@@ -64,7 +64,17 @@ export default function MapContainer() {
   const points = useMapStore((state) => state.points);
 
   return (
-    <div className="relative w-full h-full select-none" id="map-viewport-wrapper">
+    <div className="relative w-full h-full select-none overflow-hidden" id="map-viewport-wrapper">
+      {/*
+        SearchBar placed in the outer relative container above Leaflet.
+        This guarantees perfect responsive positioning without Leaflet layout interference.
+      */}
+      <div className="absolute top-4 left-0 right-0 z-[1000] px-4 pointer-events-none flex justify-center">
+        <div className="w-full max-w-md pointer-events-auto">
+          <SearchBar />
+        </div>
+      </div>
+
       <LeafletMapContainer
         center={[mapCenter.lat, mapCenter.lng]}
         zoom={mapZoom}
@@ -72,11 +82,15 @@ export default function MapContainer() {
         zoomControl={true}
         attributionControl={true}
       >
-        {/* Dark map tiles — CartoDB Dark Matter */}
+        {/*
+          OpenStreetMap tiles with dark-mode-tiles CSS filter.
+          100% Free & Open-Source — NO API KEY REQUIRED, NO WATERMARKS.
+        */}
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
-          maxZoom={20}
+          className="dark-mode-tiles"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
+          maxZoom={19}
         />
 
         {/* Map event and fly-to coordinate handler */}
@@ -89,22 +103,13 @@ export default function MapContainer() {
         {points.map((point) => (
           <PointMarker key={point.id} point={point} />
         ))}
-
-        {/* Floating Search Bar */}
-        <div
-          className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] w-full max-w-md px-4 pointer-events-none"
-        >
-          <div className="pointer-events-auto">
-            <SearchBar />
-          </div>
-        </div>
       </LeafletMapContainer>
 
       {/* Onscreen contextual guide hints */}
       {points.length === 0 && (
         <div
           role="status"
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] bg-[#0d1117]/90 backdrop-blur-md text-gray-200 text-xs px-4 py-2 rounded-full border border-white/10 shadow-2xl pointer-events-none flex items-center gap-2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] bg-[#0d1117]/95 backdrop-blur-md text-gray-200 text-xs px-4 py-2 rounded-full border border-white/15 shadow-2xl pointer-events-none flex items-center gap-2 font-medium"
         >
           <span>📍</span> Hacé click en cualquier lugar del mapa para agregar puntos
         </div>
@@ -112,7 +117,7 @@ export default function MapContainer() {
       {points.length === 1 && (
         <div
           role="status"
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] bg-[#0d1117]/90 backdrop-blur-md text-gray-200 text-xs px-4 py-2 rounded-full border border-white/10 shadow-2xl pointer-events-none flex items-center gap-2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] bg-[#0d1117]/95 backdrop-blur-md text-gray-200 text-xs px-4 py-2 rounded-full border border-white/15 shadow-2xl pointer-events-none flex items-center gap-2 font-medium"
         >
           <span>➕</span> Agregá más puntos para delimitar las celdas de Voronoi
         </div>

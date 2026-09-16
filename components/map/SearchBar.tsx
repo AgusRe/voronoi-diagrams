@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { useMap } from "react-leaflet";
 import { Search, X, Loader2, AlertCircle, MapPin } from "lucide-react";
 import { searchLocation, NominatimPlace } from "@/lib/nominatim";
 
 export default function SearchBar() {
-  const map = useMap();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<NominatimPlace[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,33 +41,25 @@ export default function SearchBar() {
     }
   }, []);
 
-  const handleSelect = useCallback(
-    (place: NominatimPlace) => {
-      const lat = parseFloat(place.lat);
-      const lon = parseFloat(place.lon);
-      const bb = place.boundingbox;
+  const handleSelect = useCallback((place: NominatimPlace) => {
+    const lat = parseFloat(place.lat);
+    const lon = parseFloat(place.lon);
 
-      if (bb && bb.length === 4) {
-        const south = parseFloat(bb[0]);
-        const north = parseFloat(bb[1]);
-        const west = parseFloat(bb[2]);
-        const east = parseFloat(bb[3]);
-        map.fitBounds([
-          [south, west],
-          [north, east],
-        ]);
-      } else {
-        map.setView([lat, lon], 14);
-      }
+    // Dispatch fly-to custom event handled by MapContainer
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("voronoi:fly-to", {
+          detail: { lat, lng: lon, zoom: 14 },
+        })
+      );
+    }
 
-      setQuery(place.display_name.split(",")[0]);
-      setShowDropdown(false);
-      setResults([]);
-      setErrorMessage(null);
-      setSelectedIndex(-1);
-    },
-    [map]
-  );
+    setQuery(place.display_name.split(",")[0]);
+    setShowDropdown(false);
+    setResults([]);
+    setErrorMessage(null);
+    setSelectedIndex(-1);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -124,21 +114,16 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full">
-      <div className="relative flex items-center">
-        {/* Search icon / loader button */}
-        <button
-          type="button"
-          onClick={() => executeSearch(query)}
-          aria-label="Buscar ubicación"
-          className="absolute left-3.5 z-10 text-gray-400 hover:text-white transition-colors"
-        >
+    <div ref={containerRef} className="relative w-full max-w-md mx-auto shadow-2xl">
+      <div className="relative flex items-center bg-[#0d1117]/95 backdrop-blur-md rounded-2xl border border-white/15 overflow-hidden transition-all focus-within:border-indigo-500/70 focus-within:ring-2 focus-within:ring-indigo-500/30">
+        {/* Search icon / loader */}
+        <div className="pl-3.5 pr-1 text-gray-400 flex items-center justify-center">
           {isLoading ? (
             <Loader2 size={16} className="animate-spin text-indigo-400" />
           ) : (
             <Search size={16} />
           )}
-        </button>
+        </div>
 
         {/* Input */}
         <input
@@ -155,25 +140,23 @@ export default function SearchBar() {
           onFocus={() => {
             if (results.length > 0 || errorMessage) setShowDropdown(true);
           }}
-          placeholder="Buscá una ciudad, barrio o dirección y presioná Enter..."
+          placeholder="Buscá una ciudad, barrio o dirección..."
           className="
-            w-full pl-10 pr-16 py-2.5 rounded-xl
-            bg-[#0d1117]/95 backdrop-blur-md
-            border border-white/10
-            text-white text-xs placeholder-gray-500
-            outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/40
-            shadow-2xl transition-all duration-200
+            flex-1 py-2.5 px-2
+            bg-transparent
+            text-white text-xs placeholder-gray-400
+            outline-none
           "
         />
 
-        {/* Clear & Submit buttons */}
-        <div className="absolute right-2 flex items-center gap-1">
+        {/* Clear & Search action buttons */}
+        <div className="pr-2 flex items-center gap-1.5 flex-shrink-0">
           {query && (
             <button
               type="button"
               onClick={handleClear}
               aria-label="Limpiar búsqueda"
-              className="p-1 text-gray-400 hover:text-white transition-colors rounded"
+              className="p-1 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
             >
               <X size={14} />
             </button>
@@ -182,7 +165,7 @@ export default function SearchBar() {
             type="button"
             onClick={() => executeSearch(query)}
             disabled={isLoading || query.trim().length < 3}
-            className="px-2 py-1 bg-indigo-600/80 hover:bg-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed text-[11px] font-medium text-white rounded-md transition-colors"
+            className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-[11px] font-medium text-white rounded-lg transition-colors shadow-sm"
           >
             Buscar
           </button>
@@ -194,7 +177,7 @@ export default function SearchBar() {
         <div
           id="search-results-list"
           role="listbox"
-          className="absolute top-full mt-1.5 w-full bg-[#0d1117]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50 max-h-64 overflow-y-auto"
+          className="absolute top-full mt-1.5 w-full bg-[#0d1117]/95 backdrop-blur-md border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-64 overflow-y-auto"
         >
           {errorMessage && (
             <div className="p-3 text-xs text-rose-300 flex items-start gap-2 bg-rose-500/10">

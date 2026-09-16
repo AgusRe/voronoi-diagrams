@@ -36,92 +36,96 @@ const features = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0d1117] text-white flex flex-col selection:bg-indigo-500 selection:text-white">
+    <main className="min-h-screen w-full bg-[#0d1117] text-white flex flex-col items-center selection:bg-indigo-500 selection:text-white">
       {/* Navigation Bar */}
-      <nav className="border-b border-white/10 px-6 py-4 flex items-center justify-between bg-[#0d1117]/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center shadow-md shadow-indigo-600/30">
-            <MapPin size={15} className="text-white" />
+      <nav className="w-full border-b border-white/10 bg-[#0d1117]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+        <div className="max-w-6xl w-full mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center shadow-md shadow-indigo-600/30">
+              <MapPin size={15} className="text-white" />
+            </div>
+            <span className="text-white font-semibold text-sm tracking-tight">VoronoiMap</span>
           </div>
-          <span className="text-white font-semibold text-sm tracking-tight">VoronoiMap</span>
+          <Link
+            id="nav-map-btn"
+            href="/map"
+            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/40"
+          >
+            <span>Abrir visor</span>
+            <ArrowRight size={13} />
+          </Link>
         </div>
-        <Link
-          id="nav-map-btn"
-          href="/map"
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/40"
-        >
-          <span>Abrir visor</span>
-          <ArrowRight size={13} />
-        </Link>
       </nav>
 
-      {/* Hero Section */}
-      <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3.5 py-1.5 rounded-full mb-8 font-medium">
-          <Zap size={13} />
-          <span>Geometría computacional interactiva</span>
-        </div>
+      {/* Hero Section — Centered across all screens */}
+      <div className="w-full flex-1 flex flex-col items-center justify-center">
+        <section className="w-full max-w-4xl px-6 py-20 flex flex-col items-center justify-center text-center mx-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3.5 py-1.5 rounded-full mb-8 font-medium">
+            <Zap size={13} />
+            <span>Geometría computacional interactiva</span>
+          </div>
 
-        {/* Main Heading */}
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
-          Diagramas de Voronoi para{" "}
-          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
-            análisis territorial
-          </span>
-        </h1>
+          {/* Main Heading */}
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+            Diagramas de Voronoi para{" "}
+            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+              análisis territorial
+            </span>
+          </h1>
 
-        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mb-10 leading-relaxed font-normal">
-          Definí puntos en el mapa y visualizá polígonos de proximidad en tiempo real. Analizá
-          áreas de influencia, competencia y cobertura de sucursales con precisión matemática.
-        </p>
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mb-10 leading-relaxed font-normal">
+            Definí puntos en el mapa y visualizá polígonos de proximidad en tiempo real. Analizá
+            áreas de influencia, competencia y cobertura de sucursales con precisión matemática.
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
-          <Link
-            id="start-btn"
-            href="/map"
-            className="flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-0.5"
-          >
-            <span>Comenzar análisis</span>
-            <ArrowRight size={15} />
-          </Link>
-          <a
-            href="https://es.wikipedia.org/wiki/Pol%C3%ADgonos_de_Voronoi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white px-8 py-3.5 rounded-xl text-sm font-medium transition-all"
-          >
-            ¿Cómo funciona Voronoi?
-          </a>
-        </div>
-      </section>
-
-      {/* Feature Grid */}
-      <section className="px-6 pb-24 max-w-5xl mx-auto w-full">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {features.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 hover:border-white/10 hover:bg-white/[0.04] transition-all flex flex-col justify-between"
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto justify-center items-center">
+            <Link
+              id="start-btn"
+              href="/map"
+              className="flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-0.5 w-full sm:w-auto"
             >
-              <div>
-                <div className="w-8 h-8 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center mb-3.5">
-                  <Icon size={16} className="text-indigo-400" />
+              <span>Comenzar análisis</span>
+              <ArrowRight size={15} />
+            </Link>
+            <a
+              href="https://es.wikipedia.org/wiki/Pol%C3%ADgonos_de_Voronoi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white px-8 py-3.5 rounded-xl text-sm font-medium transition-all w-full sm:w-auto"
+            >
+              ¿Cómo funciona Voronoi?
+            </a>
+          </div>
+        </section>
+
+        {/* Feature Grid — Centered */}
+        <section className="w-full max-w-5xl px-6 pb-24 mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {features.map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 hover:border-white/10 hover:bg-white/[0.04] transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-8 h-8 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center mb-3.5">
+                    <Icon size={16} className="text-indigo-400" />
+                  </div>
+                  <h3 className="text-white text-sm font-semibold mb-1.5">{title}</h3>
+                  <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
                 </div>
-                <h3 className="text-white text-sm font-semibold mb-1.5">{title}</h3>
-                <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 px-6 py-5 text-center text-gray-500 text-xs">
-        <p>
-          VoronoiMap • Desarrollado con Next.js, OpenStreetMap, CARTO, Leaflet y d3-delaunay.
-        </p>
+      <footer className="w-full border-t border-white/10 px-6 py-5 text-center text-gray-500 text-xs mt-auto">
+        <div className="max-w-6xl mx-auto">
+          VoronoiMap • Desarrollado con Next.js, OpenStreetMap, Leaflet y d3-delaunay.
+        </div>
       </footer>
     </main>
   );
